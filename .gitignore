@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribución de archivos
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+*.manifest
+*.spec
+
+# Entornos virtuales
+.env/
+.venv/
+ENV/
+env/
+venv/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Logs y bases de datos locales
+*.log
+*.sqlite3
+
+# Archivos creados por el sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de test coverage
+htmlcov/
+.tox/
+.nox/
+coverage.*
+.cache
+pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
