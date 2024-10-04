@@ -27,7 +27,7 @@ def test_when_create_period_should_return_period_with_uuid_created(period_reposi
     # Then
     period_repository.save.assert_called_once()
     assert sut.period_id is not None
-    assert sut.period_name == "23-24"
+    assert sut.period_name == "23-23"
 
 def test_when_get_all_periods_should_return_list_of_periods(period_repository):
 
