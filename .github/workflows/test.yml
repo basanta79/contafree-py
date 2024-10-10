@@ -54,7 +54,7 @@ jobs:
 
       - name: Run integration tests
         env:
-          DATABASE_URL: postgres://test_user:test_password@localhost:5432/treasury_test
+          DATABASE_URL: postgresql://test_user:test_password@localhost:5432/treasury_test
         run: |
           pytest -m "integration"
 
