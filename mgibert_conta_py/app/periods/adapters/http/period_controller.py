@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from mgibert_conta_py.app.database import get_session
+from mgibert_conta_py.app.database import get_session, StorageSession
 from mgibert_conta_py.app.periods.adapters.repositories.period_repository_impl import PeriodRepositoryImpl
 from mgibert_conta_py.app.periods.application.period_service import PeriodService
 from mgibert_conta_py.app.periods.domain.entities.period import Period
