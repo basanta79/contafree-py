@@ -54,6 +54,12 @@ jobs:
 
       - name: Run integration tests
         env:
-          DATABASE_URL: postgres://test_user:test_password@localhost:5432/test_db  # Conexión a la DB
+          DATABASE_URL: postgres://test_user:test_password@localhost:5432/treasury_test
         run: |
           pytest -m "integration"
+
+      - name: Print environment variables
+        run: |
+          echo "DATABASE_URL: $DATABASE_URL"
+          echo "POSTGRES_USER: $POSTGRES_USER"
+          echo "POSTGRES_DB: $POSTGRES_DB"
