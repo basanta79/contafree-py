@@ -56,6 +56,7 @@ jobs:
         env:
           DATABASE_URL: postgresql://test_user:test_password@localhost:5432/treasury_test
         run: |
+          cd mgibert_conta_py
           alembic upgrade head
 
       - name: Run integration tests
