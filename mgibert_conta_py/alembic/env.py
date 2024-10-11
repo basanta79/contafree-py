@@ -12,6 +12,7 @@ config = context.config
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
+print(f'config.config_file_name: {config.config_file_name}')
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
@@ -25,8 +26,10 @@ target_metadata = None
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-database_url = os.getenv('DATABASE_URL', 'postgresql://pablo:example@localhost:5433/treasury')
-config.set_main_option('sqlalchemy.url', database_url)
+database_url = os.getenv('DATABASE_URL')
+print(f'database_url: {database_url}')
+if database_url:
+    config.set_main_option('sqlalchemy.url', database_url)
 
 
 def run_migrations_offline() -> None:

@@ -2,11 +2,11 @@ import contextlib
 
 import pytest
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
 import os
 
 
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://pablo:example@localhost:5433/treasury")
+DATABASE_URL = os.getenv("TEST_DATABASE_URL", "postgresql://pablo:example@localhost:5433/treasury_test")
 
 
 engine = create_engine(

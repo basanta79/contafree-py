@@ -24,7 +24,6 @@ SessionLocal = sessionmaker(
 )
 
 
-@contextlib.contextmanager
 def get_session():
     db = SessionLocal()
     try:

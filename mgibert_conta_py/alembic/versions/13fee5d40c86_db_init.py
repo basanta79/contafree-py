@@ -120,11 +120,11 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    op.drop_table('balance_accounts')
-    op.drop_table('ledger')
-    op.drop_table('vendor')
-    op.drop_table('payments')
-    op.drop_table('account_operations')
-    op.drop_table('operations_ledger')
-    op.drop_table('periods')
     op.drop_table('projects')
+    op.drop_table('periods')
+    op.drop_table('operations_ledger')
+    op.drop_table('ledger')
+    op.drop_table('balance_accounts')
+    op.drop_table('account_operations')
+    op.drop_table('payments')
+    op.drop_table('vendor')
