@@ -1,5 +1,6 @@
 import contextlib
 
+import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 import os
@@ -23,9 +24,8 @@ SessionLocal = sessionmaker(
     bind=engine
 )
 
-
-@contextlib.contextmanager
-def get_session():
+@pytest.fixture
+def storage():
     db = SessionLocal()
     try:
         yield db

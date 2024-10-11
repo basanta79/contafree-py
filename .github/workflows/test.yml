@@ -1,0 +1,72 @@
+name: Run Tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: treasury_test
+        options: >-
+          --health-cmd "pg_isready -U test_user" 
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      # Checkout source code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Install Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  
+
+      - name: Run unit tests
+        run: |
+          ls -la
+          pytest -m "unit"
+
+      - name: Wait for PostgreSQL
+        run: |
+          while ! pg_isready -h localhost -U test_user; do
+            sleep 1
+          done
+
+      - name: Run Alembic migrations
+        env:
+          DATABASE_URL: postgresql://test_user:test_password@localhost:5432/treasury_test
+        run: |
+          cd mgibert_conta_py
+          alembic upgrade head
+
+      - name: Run integration tests
+        env:
+          DATABASE_URL: postgresql://test_user:test_password@localhost:5432/treasury_test
+        run: |
+          pytest -m "integration"
+
+      - name: Print environment variables
+        run: |
+          echo "DATABASE_URL: $DATABASE_URL"
+          echo "POSTGRES_USER: $POSTGRES_USER"
+          echo "POSTGRES_DB: $POSTGRES_DB"
