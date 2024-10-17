@@ -59,6 +59,10 @@ jobs:
           cd mgibert_conta_py
           alembic upgrade head
 
+      - name: Run acceptance test
+        run: |
+          pytest -m "acceptance" --disable-warnings
+
       - name: Run integration tests
         env:
           TEST_DATABASE_URL: postgresql://test_user:test_password@localhost:5432/treasury_test
