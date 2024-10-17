@@ -60,6 +60,8 @@ jobs:
           alembic upgrade head
 
       - name: Run acceptance test
+        env:
+          DATABASE_URL: postgresql://test_user:test_password@localhost:5432/treasury_test
         run: |
           pytest -m "acceptance" --disable-warnings
 
