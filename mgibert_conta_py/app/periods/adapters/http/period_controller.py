@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from fastapi import status
-from fastapi.responses import JSONResponse
 
 from mgibert_conta_py.app.database import get_session
 from mgibert_conta_py.app.periods.adapters.repositories.period_repository_impl import PeriodRepositoryImpl
