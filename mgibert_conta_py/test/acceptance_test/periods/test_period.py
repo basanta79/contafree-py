@@ -1,4 +1,3 @@
-import pytest
 from fastapi.testclient import TestClient
 from mgibert_conta_py.app.main import app
 
