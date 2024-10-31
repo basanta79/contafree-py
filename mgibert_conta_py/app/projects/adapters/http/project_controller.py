@@ -23,6 +23,8 @@ def create_project(project: Project, storage: Session = Depends(get_session)):
 
 @router.get('/projects')
 def get_all_projects(storage: Session = Depends(get_session)):
+    repository = ProjectRepositoryImpl(storage)
+    service = PeriodService(repository)
     pass
     # repository = PeriodRepositoryImpl(storage)
     # service = PeriodService(repository)
