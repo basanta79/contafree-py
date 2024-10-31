@@ -13,3 +13,7 @@ class PeriodRepository(ABC):
     @abstractmethod
     def get_all(self) -> List[Period]:
         raise NotImplementedError
+
+    @abstractmethod
+    def get_by_name(self, name: str) -> Period:
+        raise NotImplementedError

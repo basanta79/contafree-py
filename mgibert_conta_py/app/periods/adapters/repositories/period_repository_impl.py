@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union, Type
 
 from sqlalchemy.orm import Session
 
@@ -16,11 +16,24 @@ class PeriodRepositoryImpl(PeriodRepository):
         db_period = PeriodModel(period_name=period.period_name)
         self.storage.add(db_period)
         self.storage.commit()
-        self.storage.refresh(db_period)  # Actualizar el objeto con los datos almacenados en la DB
+        self.storage.refresh(db_period)
         return Period(
             period_id=db_period.period_id,
             period_name=db_period.period_name,
         )
 
     def get_all(self) -> List[Period]:
-        return self.storage.query(PeriodModel).all()
+        db_period_list = self.storage.query(PeriodModel).all()
+        return [self.serialize(db_period) for db_period in db_period_list]
+
+    def get_by_name(self, period_name: str) -> Period:
+        db_period = self.storage.query(PeriodModel).filter_by(period_name=period_name).first()
+        if db_period is not None:
+            return self.serialize(db_period)
+
+    @staticmethod
+    def serialize(db_period: Union[PeriodModel, Type[PeriodModel]]) -> Period:
+        return Period(
+            period_id=db_period.period_id,
+            period_name=db_period.period_name,
+        )

@@ -112,9 +112,7 @@ def upgrade() -> None:
             project_id uuid NOT NULL PRIMARY KEY,
             project_key TEXT NOT NULL,
             description TEXT NOT NULL,
-            period uuid NOT NULL,
-            CONSTRAINT fk_projects_period
-                    FOREIGN KEY (period) REFERENCES periods(period_id)
+            period TEXT NOT NULL
         );
     """)
 
