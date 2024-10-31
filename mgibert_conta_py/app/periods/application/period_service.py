@@ -17,3 +17,6 @@ class PeriodService:
 
     def get_all_periods(self) -> List[Period]:
         return self.period_repository.get_all()
+
+    def find_by_name(self, name: str) -> Period:
+        return self.period_repository.get_by_name(name)

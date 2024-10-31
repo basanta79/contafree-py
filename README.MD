@@ -20,3 +20,5 @@ or use the script:
 ```
 $  python scripts/migrations.py upgrade test
 ```
+
+## Downgrades

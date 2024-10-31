@@ -8,8 +8,8 @@ client = TestClient(app)
 def test_when_create_project_should_return_201():
     # Given:
     new_project_data = {
-        "project_key": "project_acceptance_test_creation",
-        "project_description": "This project is created for testing purposes",
+        "key": "project_acceptance_test_creation",
+        "description": "This project is created for testing purposes",
         "period": "24-25"
     }
 
@@ -20,7 +20,7 @@ def test_when_create_project_should_return_201():
     assert response.status_code == 201
 
     created_project = response.json()
-    assert created_project["project_id"] == "24-25"
-    assert ["project_key"] == "project_acceptance_test_creation"
-    assert ["project_desription"] == "This project is created for testing purposes"
-    assert ["period"] == "24-25"
+    assert created_project["project_id"] is not None
+    assert created_project["key"] == "project_acceptance_test_creation"
+    assert created_project["description"] == "This project is created for testing purposes"
+    assert created_project["period"] == "24-25"

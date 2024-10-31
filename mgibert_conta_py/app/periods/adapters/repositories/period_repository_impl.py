@@ -24,7 +24,12 @@ class PeriodRepositoryImpl(PeriodRepository):
 
     def get_all(self) -> List[Period]:
         db_period_list = self.storage.query(PeriodModel).all()
-        [self.serialize(db_period) for db_period in db_period_list]
+        return [self.serialize(db_period) for db_period in db_period_list]
+
+    def get_by_name(self, period_name: str) -> Period:
+        db_period = self.storage.query(PeriodModel).filter_by(period_name=period_name).first()
+        if db_period is not None:
+            return self.serialize(db_period)
 
     @staticmethod
     def serialize(db_period: Union[PeriodModel, Type[PeriodModel]]) -> Period:

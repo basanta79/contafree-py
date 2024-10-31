@@ -25,7 +25,8 @@ class ProjectRepositoryImpl(ProjectRepository):
 
 
     def get(self, project_id: uuid.UUID) -> Project:
-        pass
+        db_project = self.storage.query(ProjectModel).get(project_id)
+        return self.serialize(db_project)
 
     def get_all(self) -> List[Project]:
         db_project_list = self.storage.query(ProjectModel).all()
